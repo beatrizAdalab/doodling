@@ -1,0 +1,30 @@
+<% if (viewModel.sidebar.lastComments) { %>
+<div class="card mt-4 shadow-sm rounded">
+  <div class="card-header bg-dark text-white">
+    <h4 class="m-0"><i class="fas fa-commnets"></i>
+      Lastest Comments
+    </h4>
+  </div>
+  <div class="card-body py-0">
+
+    <% viewModel.sidebar.lastComments.forEach( comment => { %>
+    <div class="row border-top py-3">
+      <div class="col-3 p-0">
+        <a href="/images/<%= comment.image.uniqueId %>">
+          <img src="/public/upload/<%= comment.image.filename %>" class="img-thumnail w-100">
+        </a>
+      </div>
+      <div class="col-9">
+        <blockquote class="w-100">
+          <p class="m-0"><%= comment.comment %></p>
+          <footer class="blockquote-footer">
+            <span><%= comment.name %></span>
+
+          </footer>
+      </div>
+    </div>
+    <% }) %>
+
+  </div>
+</div>
+<% } %>

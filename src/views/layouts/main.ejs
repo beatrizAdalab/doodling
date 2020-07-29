@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doodling</title>
+  <!--font awesome-->
+  <script src="https://kit.fontawesome.com/b929f191aa.js" crossorigin="anonymous"></script>
+  <!--Custom CSS-->
+  <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/public/css/styles.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+      <a class="navbar-brand" href="/">
+        <img src="/public/img/logo.png" class="d-inline-block align-top" alt="logo doodling">
+        <span class="h3 m-0 ml-2 font-weight-bold">Doodling</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-md-8">
+        <%- body %>
+      </div>
+      <div class="col-md-4">
+        <%- include('../partials/stats') %>
+        <%- include('../partials/popular') %>
+        <%- include('../partials/comments') %>
+      </div>
+    </div>
+  </div>
+
+  <!--SCRIPT-->
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <!--CUSTOM CODE-->
+  <script src="/public/js/scripts.js"></script>
+</body>
+
+</html>

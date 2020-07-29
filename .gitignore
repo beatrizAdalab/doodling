@@ -1,0 +1,9 @@
+/build
+/node_modules
+package-lock.json
+/build
+config.js
+.env.development.local
+.env.production.local
+
+.env

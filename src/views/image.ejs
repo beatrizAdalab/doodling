@@ -1,0 +1,101 @@
+<%- layout('layouts/main') %>
+<%= console.log(viewModel.sidebar, 'estoy en images') %>
+
+<div class="card shadow-sm rounded">
+  <div class="card-header d-flex justify-content-between align-item-center">
+    <h3><%= viewModel.image.title %></h3>
+    <button class="btn btn-danger rounded" id="btn-delete" data-id="<%= viewModel.image.uniqueId%>">
+      <i class="fas fa-times"></i> Delete
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="tex-center">
+      <img src="/public/upload/<%= viewModel.image.filename %>" alt="<%= viewModel.image.title %>" class="img-fluid">
+    </div>
+    <p class="mt-4"><%= viewModel.image.description %></p>
+  </div>
+  <div class="card-footer d-flex align-items-center">
+    <button class="btn btn-outline-primary rounded" id="btn-like" data-id="<%= viewModel.image.uniqueId%>">
+      <i class="fas fa-thumbs-up mr-1"></i>
+      Like
+    </button>
+    <p class="my-0 mx-3">
+      <i class="fas fa-heart mr-1"></i>
+      <span class="likes-count"><%= viewModel.image.likes %></span>
+    </p>
+    <p class="my-0 mx-3">
+      <i class="far fa-eye mr-1"></i>
+      <span class="views-count"><%= viewModel.image.views %></span>
+    </p>
+    <p class="my-0 mx-3">
+      <i class="far fa-eye mr-1"></i>
+      <span class="timeAgo"><%= helpers.timeAgo(viewModel.image.timestamp) %></span>
+    </p>
+  </div>
+</div>
+
+<!-- //Comentarios -->
+
+<div class="card shadow-sm rounded mt-4">
+  <div class="card-header d-flex justify-content-between align-item-center">
+    <h3>Comments</h3>
+    <button class="btn btn-outline-info rounded" id="btn-toggle-comment">
+      <i class="far fa-comments"></i>
+      Post a comment
+    </button>
+  </div>
+  <div class="card-body">
+    <blockquote id="post-comment">
+      <form action="/images/<%= viewModel.image.uniqueId %>/comment" method="POST">
+        <div class="form-group row">
+          <label class="col-lg-2 col-form-label" for="userName">Name:</label>
+          <div class="col-lg-10">
+            <input required type="text" class="form-control" name="name" id="userName" placeholder="your name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-2 col-form-label" for="userEmail">Email:</label>
+          <div class="col-lg-10">
+            <input required type="text" class="form-control" name="email" id="userEmail" placeholder="your email">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-2 col-form-label" for="userComment">Comment:</label>
+          <div class="col-lg-10">
+            <textarea required class="form-control" name="comment" rows="5" id="userComment"
+              placeholder="write your comment"></textarea>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-success rounded" id="btn-comment">
+            <i class="far fa-paper-plane"></i>
+            Publish
+          </button>
+        </div>
+      </form>
+    </blockquote>
+
+    <div class="list-comments">
+      <% viewModel.comments.forEach( comment => { %>
+      <div class="my-4">
+        <div class="row">
+          <div class="col-2 col-lg-1 comment-avatar">
+            <img class="rounded-circle" src="http://gravatar.com/avatar/<%= comment.gravatar %>?d=monsterid&s=45"
+              alt="Image Description">
+          </div>
+          <div class="col-10  col-lg-11 comment-user">
+            <h5 class="h5 mb-0"><%= comment.name %></h5>
+            <footer class="blockquote-footer"><%= helpers.timeAgo(comment.timestamp)%></footer>
+          </div>
+        </div>
+        <div class="row">
+          <div class="comment-text col-10  col-lg-11 offset-2 offset-lg-1">
+            <p class=" m-0 p-2 border rounded bg-light"><%= comment.comment %></p>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+
+</div>

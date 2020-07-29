@@ -1,0 +1,20 @@
+<% const imagesPath = '../images/'; %>
+
+<div class="card mt-4 shadow-sm rounded">
+  <div class="card-header bg-dark text-white">
+    <h4 class="m-0"><i class="fas fa-fire"></i>
+      Most Popular
+    </h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <% viewModel.sidebar.popularImgs.forEach( image => { %>
+      <div class="col-6 mb-4">
+        <a href="<%= imagesPath + image.uniqueId %>">
+          <img src="/public/upload/<%= image.filename %>" class="w-100 h-100 image-thumbnail">
+        </a>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
